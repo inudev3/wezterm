@@ -17,19 +17,16 @@ end
 
 function return_bg_image(appearance)
   if appearance:find 'Dark' then
-    return '~/Downloads/cyberpunk.jpeg'
+    return '$HOME/Downloads/cyberpunk.jpeg'
   else
-    return '~/Downloads/snowy.jpeg'
+    return '$HOME/Downloads/snowy.jpeg'
   end
 end
 
-local config = {}
 if wezterm.config_builder then
   config = wezterm.config_builder()
 end
-config.color_scheme = scheme_for_appearance(get_appearance())
-config.window_background_image = return_bg_image(get_appearance())
-if get_appearance():find 'Dark' then
-  config.window_background_image_hsb = {brightness=0.3}
-end
-return config
+return {
+color_scheme = scheme_for_appearance(get_appearance()),
+window_background_image = return_bg_image(get_appearance()),
+}
